@@ -89,40 +89,46 @@ function PosSandbox() {
   return (
     <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
       {/* Left 7 cols: Nhập liệu & Danh sách dòng hàng */}
-      <div className="space-y-4 lg:col-span-7">
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-2 sm:grid-cols-12">
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Tên sản phẩm / dịch vụ"
-            aria-label="Tên sản phẩm thử nghiệm"
-            className="h-10 rounded-xl border border-black/[0.10] bg-white px-3.5 text-[13px] text-[#1D1D1F] placeholder:text-[#6E6E73] focus:border-[#0071E3] focus:outline-none sm:col-span-5"
-          />
-          <input
-            type="text"
-            inputMode="numeric"
-            value={priceInput}
-            onChange={(e) => setPriceInput(e.target.value)}
-            placeholder="Đơn giá (VND)"
-            aria-label="Đơn giá VND"
-            className="h-10 rounded-xl border border-black/[0.10] bg-white px-3.5 text-[13px] text-[#1D1D1F] placeholder:text-[#6E6E73] focus:border-[#0071E3] focus:outline-none sm:col-span-4"
-          />
-          <div className="flex gap-2 sm:col-span-3">
+      <div className="min-w-0 space-y-4 lg:col-span-7">
+        <form onSubmit={handleSubmit} className="space-y-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-12">
             <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Tên sản phẩm / dịch vụ"
+              aria-label="Tên sản phẩm thử nghiệm"
+              className="h-10 min-w-0 rounded-xl border border-black/[0.10] bg-white px-3.5 text-[13px] text-[#1D1D1F] placeholder:text-[#6E6E73] focus:border-[#0071E3] focus:outline-none sm:col-span-7"
+            />
+            <input
+              type="text"
+              inputMode="numeric"
+              value={priceInput}
+              onChange={(e) => setPriceInput(e.target.value)}
+              placeholder="Đơn giá (VND)"
+              aria-label="Đơn giá VND"
+              className="h-10 min-w-0 rounded-xl border border-black/[0.10] bg-white px-3.5 text-[13px] text-[#1D1D1F] placeholder:text-[#6E6E73] focus:border-[#0071E3] focus:outline-none sm:col-span-5"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <label htmlFor="pos-qty-input" className="text-[12px] font-medium text-[#6E6E73]">
+              Số lượng:
+            </label>
+            <input
+              id="pos-qty-input"
               type="number"
               min={1}
               value={qtyInput}
               onChange={(e) => setQtyInput(e.target.value)}
               aria-label="Số lượng"
-              className="h-10 w-14 rounded-xl border border-black/[0.10] bg-white px-2 text-center text-[13px] text-[#1D1D1F] focus:border-[#0071E3] focus:outline-none"
+              className="h-9 w-20 rounded-xl border border-black/[0.10] bg-white px-2.5 text-center text-[13px] text-[#1D1D1F] focus:border-[#0071E3] focus:outline-none"
             />
             <button
               type="submit"
-              className="inline-flex h-10 flex-1 cursor-pointer items-center justify-center gap-1 rounded-xl bg-[#1D1D1F] px-3 text-[13px] font-medium text-white transition-colors hover:bg-[#333336]"
+              className="inline-flex h-9 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#1D1D1F] px-4 text-[13px] font-medium text-white transition-colors hover:bg-[#333336]"
             >
               <Plus className="h-4 w-4" />
-              <span>Thêm</span>
+              <span>Thêm vào phiếu</span>
             </button>
           </div>
         </form>
