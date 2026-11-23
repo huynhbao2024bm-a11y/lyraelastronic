@@ -56,15 +56,16 @@ export function Navbar({ onOpenZalo }: NavbarProps) {
           {/* Brand mark */}
           <a
             href="#"
-            className="inline-flex items-center gap-2.5 rounded-full text-[14px] font-semibold tracking-[-0.02em] text-[#1D1D1F] transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3]"
+            aria-label={`${SITE_CONFIG.brandName} — Trang chủ`}
+            className="inline-flex items-center rounded-full py-0.5 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3]"
           >
-            <span
-              aria-hidden="true"
-              className="silver-surface flex h-5 w-5 items-center justify-center rounded-full"
-            >
-              <span className="h-2 w-2 rounded-full bg-[#0071E3]" />
-            </span>
-            <span>{SITE_CONFIG.brandName}</span>
+            <img
+              src={SITE_CONFIG.logoImageSrc}
+              alt={SITE_CONFIG.brandName}
+              width={104}
+              height={38}
+              className="h-[34px] w-auto object-contain sm:h-[38px]"
+            />
           </a>
 
           {/* Desktop links */}

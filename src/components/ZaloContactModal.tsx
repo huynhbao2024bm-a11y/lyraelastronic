@@ -51,10 +51,16 @@ export function ZaloContactModal({ open, onClose }: ZaloContactModalProps) {
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[12px] font-semibold text-[#0071E3]">Kết nối trực tiếp</p>
+            <img
+              src={SITE_CONFIG.logoImageSrc}
+              alt={SITE_CONFIG.brandName}
+              width={90}
+              height={33}
+              className="h-[30px] w-auto object-contain"
+            />
             <h2
               id="zalo-modal-title"
-              className="mt-1 text-[22px] font-semibold tracking-[-0.025em] text-[#1D1D1F]"
+              className="mt-2 text-[22px] font-semibold tracking-[-0.025em] text-[#1D1D1F]"
             >
               Trao đổi qua Zalo
             </h2>

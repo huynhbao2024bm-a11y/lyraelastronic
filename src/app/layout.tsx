@@ -36,6 +36,7 @@ export const metadata: Metadata = {
       'Thiết kế Web App, Website doanh nghiệp, Zalo Mini App và Hệ thống AI Chatbot chốt đơn tự động.',
     type: 'website',
     locale: 'vi_VN',
+    images: [SITE_CONFIG.logoImageSrc],
   },
 };
 

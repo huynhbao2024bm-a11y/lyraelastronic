@@ -71,9 +71,18 @@ export function FinalCtaFooter({ onOpenZalo }: FinalCtaFooterProps) {
           </SpecularCard>
         </Reveal>
 
-        {/* Minimalist 1-line Apple-grade Copyright Footer */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-2 border-t border-black/[0.08] pt-6 text-[12px] text-[#6E6E73] sm:flex-row">
-          <p>© 2026 {SITE_CONFIG.brandName}. Thiết kế Web App, Zalo Mini App &amp; AI Chatbot.</p>
+        {/* Minimalist 1-line Apple-grade Copyright Footer with Brand Logo */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/[0.08] pt-6 text-[12px] text-[#6E6E73] sm:flex-row">
+          <div className="flex items-center gap-3">
+            <img
+              src={SITE_CONFIG.logoImageSrc}
+              alt={SITE_CONFIG.brandName}
+              width={74}
+              height={27}
+              className="h-[26px] w-auto object-contain"
+            />
+            <p>© 2026 {SITE_CONFIG.brandName}. Thiết kế Web App, Zalo Mini App &amp; AI Chatbot.</p>
+          </div>
           <p>Zalo / Hotline: {SITE_CONFIG.phoneDisplay} · {SITE_CONFIG.email}</p>
         </div>
       </div>

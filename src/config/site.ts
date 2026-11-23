@@ -9,6 +9,7 @@ export const SITE_CONFIG = {
   zaloHref: 'https://zalo.me/0797385112',
   email: 'huynhbao2024.bm@gmail.com',
   mailtoHref: 'mailto:huynhbao2024.bm@gmail.com',
+  logoImageSrc: '/images/lyra-logo.png',
   /**
    * Khi bạn có ảnh QR Zalo cá nhân, đặt file tại `public/images/zalo-qr.png`
    * và đổi giá trị bên dưới thành `'/images/zalo-qr.png'`.
