@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Bot, Check, Cpu, Globe, Layers, QrCode, ShieldCheck, Smartphone } from 'lucide-react';
-import { SITE_CONFIG } from '@/config/site';
+import { ArrowUpRight, Bot, Check, Cpu, Globe, Layers, QrCode, ShieldCheck, Smartphone } from 'lucide-react';
+import { DemoKey, SITE_CONFIG } from '@/config/site';
 import { QrCodeSvg } from './QrCodeSvg';
 import { Reveal } from './Reveal';
 import { SpecularCard } from './SpecularCard';
@@ -11,12 +11,16 @@ type ChatScenario = 'retail' | 'booking';
 type WebAppTab = 'ledger' | 'stock';
 type WebViewport = 'desktop' | 'mobile';
 
+interface BentoServicesProps {
+  onOpenDemo: (demoKey: DemoKey) => void;
+}
+
 /**
  * Section 3: Bento Grid Dịch vụ
- * - Vỏ thẻ bên ngoài là Kính Trong Suốt (.glass-surface) có bóng đổ đa tầng sâu
- * - Các khối nội dung bên trong dùng .content-card trắng sắc nét có bóng nổi khối để dễ đọc tuyệt đối.
+ * - Vỏ thẻ bên ngoài là Kính Trong Suốt (.glass-surface) có viền keyline sắc nét & bóng đổ đa tầng sâu
+ * - Các khối nội dung bên trong dùng .content-card trắng tinh có bóng nổi khối.
  */
-export function BentoServices() {
+export function BentoServices({ onOpenDemo }: BentoServicesProps) {
   const [chatScenario, setChatScenario] = useState<ChatScenario>('retail');
   const [webAppTab, setWebAppTab] = useState<WebAppTab>('ledger');
   const [miniAppExpanded, setMiniAppExpanded] = useState(false);
@@ -36,7 +40,7 @@ export function BentoServices() {
         ];
 
   return (
-    <section id="dich-vu" className="relative scroll-mt-[76px] py-[110px] lg:py-[150px]">
+    <section id="dich-vu" className="relative scroll-mt-[76px] py-[88px] lg:py-[116px]">
       <div className="relative z-10 mx-auto max-w-[1120px] px-5 sm:px-8">
         <Reveal>
           <div className="max-w-[680px]">
@@ -46,7 +50,7 @@ export function BentoServices() {
             <h2 className="mt-3 text-[clamp(2rem,4vw,3.25rem)] font-semibold tracking-[-0.03em] leading-[1.1]">
               <span className="metallic-ink">Thiết kế để vận hành thật.</span>
               <br />
-              <span className="text-[#515158]">Không chỉ đẹp trên bản vẽ.</span>
+              <span className="text-[#3A3D45]">Không chỉ đẹp trên bản vẽ.</span>
             </h2>
           </div>
         </Reveal>
@@ -115,9 +119,16 @@ export function BentoServices() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-3.5 flex items-center justify-between border-t border-black/[0.06] pt-3 text-[11px] text-[#515158]">
+                  <div className="mt-3.5 flex items-center justify-between border-t border-black/[0.08] pt-3 text-[11.5px] text-[#3A3D45]">
                     <span>Đầu ra: Đơn nháp đồng bộ CRM</span>
-                    <span className="font-semibold text-[#0071E3]">Luồng 3 bước tự động</span>
+                    <button
+                      type="button"
+                      onClick={() => onOpenDemo('ai-chatbot')}
+                      className="spring-interactive inline-flex cursor-pointer items-center gap-1 font-semibold text-[#0071E3] hover:underline"
+                    >
+                      <span>Thử trực tiếp</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -164,11 +175,18 @@ export function BentoServices() {
                 </div>
 
                 <div className="content-card rounded-2xl p-4">
-                  <div className="flex items-center justify-between border-b border-black/[0.06] pb-2.5">
-                    <span className="text-[12px] font-semibold text-[#1D1D1F]">
+                  <div className="flex items-center justify-between border-b border-black/[0.08] pb-2.5">
+                    <span className="text-[12px] font-semibold text-[#111114]">
                       {webAppTab === 'ledger' ? 'Chuẩn sổ cái tài chính' : 'Chuẩn kiểm soát kho'}
                     </span>
-                    <ShieldCheck className="h-4 w-4 text-[#0071E3]" />
+                    <button
+                      type="button"
+                      onClick={() => onOpenDemo('webapp-pos')}
+                      className="spring-interactive inline-flex cursor-pointer items-center gap-1 text-[11px] font-semibold text-[#0071E3] hover:underline"
+                    >
+                      <span>Thử POS</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </button>
                   </div>
                   <div className="mt-3 space-y-2.5 text-[12px]">
                     {webAppTab === 'ledger' ? (
@@ -241,20 +259,14 @@ export function BentoServices() {
                       </p>
                       <button
                         type="button"
-                        onClick={() => setMiniAppExpanded((v) => !v)}
-                        className="spring-interactive mt-1.5 inline-flex cursor-pointer items-center gap-1 rounded-full border border-black/[0.08] bg-[#F4F6FA] px-2.5 py-0.5 text-[11px] font-medium text-[#1D1D1F] hover:border-[#0071E3]/40"
+                        onClick={() => {
+                          setMiniAppExpanded((v) => !v);
+                          onOpenDemo('zalo-miniapp');
+                        }}
+                        className="spring-interactive mt-1.5 inline-flex cursor-pointer items-center gap-1 rounded-full border border-black/[0.10] bg-[#EFF3F9] px-2.5 py-0.5 text-[11px] font-semibold text-[#111114] hover:border-[#0071E3]/45"
                       >
-                        {miniAppExpanded ? (
-                          <>
-                            <Check className="h-3 w-3 text-[#0071E3]" />
-                            <span>Sẵn sàng quét tại quầy</span>
-                          </>
-                        ) : (
-                          <>
-                            <QrCode className="h-3 w-3 text-[#0071E3]" />
-                            <span>Xem luồng quét QR</span>
-                          </>
-                        )}
+                        <QrCode className="h-3 w-3 text-[#0071E3]" />
+                        <span>{miniAppExpanded ? 'Mở lại mô phỏng' : 'Thử Mini App'}</span>
                       </button>
                     </div>
                   </div>

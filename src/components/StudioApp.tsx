@@ -26,8 +26,8 @@ export function StudioApp() {
 
         <main>
           <HeroSection onOpenZalo={() => setZaloOpen(true)} />
-          <BentoServices />
-          <FlagshipShowcase onOpenDemo={(key) => setActiveDemo(key)} />
+          <BentoServices onOpenDemo={(key) => setActiveDemo(key)} />
+          <FlagshipShowcase />
           <ProcessSection />
         </main>
 

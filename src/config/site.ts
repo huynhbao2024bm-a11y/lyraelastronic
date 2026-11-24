@@ -122,41 +122,6 @@ export const TECH_MARQUEE_ROW_2: TechMarqueeItem[] = [
   },
 ];
 
-export interface TechPillar {
-  id: DemoKey;
-  category: string;
-  title: string;
-  summary: string;
-  highlights: string[];
-}
-
-export const TECH_PILLARS: TechPillar[] = [
-  {
-    id: 'webapp-pos',
-    category: 'Web App Engineering',
-    title: 'Kiến trúc Giao dịch Atomic & Sổ cái VND',
-    summary:
-      'Xử lý đồng thời đơn hàng, tồn kho và công nợ bằng số nguyên VND với khóa chống trùng lặp giao dịch.',
-    highlights: ['Lưu trữ số nguyên VND', 'Khóa Idempotency Key', 'Phân quyền & Audit Trail'],
-  },
-  {
-    id: 'zalo-miniapp',
-    category: 'Zalo Ecosystem',
-    title: 'Nền tảng Zalo Mini App & QR Liên thông',
-    summary:
-      'Khách hàng quét mã hoặc mở từ tin nhắn Zalo để đặt lịch, tích điểm ngay lập tức mà không phải tải app.',
-    highlights: ['0 bước cài đặt App', 'Quét QR Check-in tại quầy', 'Tích hợp thông báo Zalo OA'],
-  },
-  {
-    id: 'ai-chatbot',
-    category: 'AI Automation',
-    title: 'Động cơ AI Tool-Calling Chống Bịa Giá',
-    summary:
-      'Mô hình ngôn ngữ kết hợp hàm truy vấn trực tiếp danh mục & tồn kho thực tế trước khi phản hồi khách hàng.',
-    highlights: ['Đọc bảng giá từ Database', 'Tự động tạo đơn nháp CRM', 'Chuyển tiếp nhân sự linh hoạt'],
-  },
-];
-
 export const PROCESS_STEPS = [
   {
     step: '01',

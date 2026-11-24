@@ -103,17 +103,17 @@ export function HeroSection({ onOpenZalo }: HeroSectionProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden pt-20 pb-[110px] sm:pt-24 lg:pt-28 lg:pb-[150px]"
+      className="relative overflow-hidden pt-16 pb-[88px] sm:pt-20 lg:pt-24 lg:pb-[116px]"
     >
       <div className="relative z-10 mx-auto max-w-[1120px] px-5 sm:px-8">
         <div className="mx-auto max-w-[880px] text-center">
-          <h1 className="text-[clamp(2.5rem,6vw,4.75rem)] font-semibold tracking-[-0.04em] leading-[1.05] drop-shadow-[0_2px_12px_rgba(15,23,42,0.06)]">
+          <h1 className="text-[clamp(2.5rem,6vw,4.75rem)] font-semibold tracking-[-0.04em] leading-[1.05] drop-shadow-[0_2px_12px_rgba(15,23,42,0.08)]">
             <span className="metallic-ink">Phần mềm tinh gọn.</span>
             <br />
-            <span className="text-[#515158]">Tỷ lệ chốt đơn vượt trội.</span>
+            <span className="text-[#3A3D45]">Tỷ lệ chốt đơn vượt trội.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-[60ch] text-[17px] font-normal leading-[1.55] tracking-[-0.015em] text-[#515158] sm:text-[19px]">
+          <p className="mx-auto mt-6 max-w-[60ch] text-[17px] font-normal leading-[1.55] tracking-[-0.015em] text-[#3A3D45] sm:text-[19px]">
             Thiết kế Web App, Website doanh nghiệp, Zalo Mini App và AI Chatbot chốt đơn tự động — tinh xảo chuẩn Apple, vận hành thực tế.
           </p>
 

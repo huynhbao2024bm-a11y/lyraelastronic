@@ -15,7 +15,7 @@ interface FinalCtaFooterProps {
  */
 export function FinalCtaFooter({ onOpenZalo }: FinalCtaFooterProps) {
   return (
-    <footer id="lien-he" className="relative scroll-mt-[76px] pt-[110px] pb-10 lg:pt-[150px] lg:pb-12">
+    <footer id="lien-he" className="relative scroll-mt-[76px] pt-[88px] pb-10 lg:pt-[116px] lg:pb-12">
       <div className="relative z-10 mx-auto max-w-[1120px] px-5 sm:px-8">
         <Reveal>
           <SpecularCard className="px-6 py-14 text-center sm:px-12 sm:py-20" variant="glass">

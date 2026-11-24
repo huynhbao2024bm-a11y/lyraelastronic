@@ -10,7 +10,7 @@ import { SpecularCard } from './SpecularCard';
  */
 export function ProcessSection() {
   return (
-    <section id="quy-trinh" className="relative scroll-mt-[76px] py-[110px] lg:py-[150px]">
+    <section id="quy-trinh" className="relative scroll-mt-[76px] py-[88px] lg:py-[116px]">
       <div className="relative z-10 mx-auto max-w-[1120px] px-5 sm:px-8">
         <Reveal>
           <div className="max-w-[640px]">
@@ -20,7 +20,7 @@ export function ProcessSection() {
             <h2 className="mt-3 text-[clamp(2rem,4vw,3.25rem)] font-semibold tracking-[-0.03em] leading-[1.1]">
               <span className="metallic-ink">Từ ý tưởng đến vận hành.</span>
               <br />
-              <span className="text-[#515158]">Rõ ràng từng cột mốc.</span>
+              <span className="text-[#3A3D45]">Rõ ràng từng cột mốc.</span>
             </h2>
           </div>
         </Reveal>
