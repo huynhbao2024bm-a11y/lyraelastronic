@@ -74,7 +74,7 @@ export function Navbar({ onOpenZalo }: NavbarProps) {
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-md text-[13px] font-medium tracking-[-0.01em] text-[#6E6E73] transition-colors duration-200 hover:text-[#1D1D1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3]"
+                className="spring-interactive rounded-full px-2.5 py-1 text-[13px] font-medium tracking-[-0.01em] text-[#515158] hover:bg-white/70 hover:text-[#1D1D1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3]"
               >
                 {item.label}
               </a>

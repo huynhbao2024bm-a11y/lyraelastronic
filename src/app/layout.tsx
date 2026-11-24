@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#F5F5F7',
+  themeColor: '#EEF2F7',
   width: 'device-width',
   initialScale: 1,
 };
@@ -53,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className={`${inter.variable} ${beVietnamPro.variable}`}>
-      <body className="min-h-screen bg-[#FFFFFF] text-[#1D1D1F] antialiased selection:bg-[#0071E3]/15 selection:text-[#1D1D1F]">
+      <body className="min-h-screen bg-[#EEF2F7] text-[#1D1D1F] antialiased selection:bg-[#0071E3]/15 selection:text-[#1D1D1F]">
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

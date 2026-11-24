@@ -681,15 +681,15 @@ function ChatbotSandbox() {
 
 const DEMO_META: Record<DemoKey, { title: string; subtitle: string }> = {
   'webapp-pos': {
-    title: 'Nguyên mẫu: Web App POS & Tính tiền VND',
-    subtitle: 'Trải nghiệm giao diện thu ngân 2 cột với khóa giao dịch số nguyên VND.',
+    title: 'Công nghệ: Web App POS & Sổ cái VND',
+    subtitle: 'Trải nghiệm cơ chế giao dịch thu ngân 2 cột với khóa số nguyên VND.',
   },
   'zalo-miniapp': {
-    title: 'Nguyên mẫu: Zalo Mini App',
-    subtitle: 'Tùy chỉnh thương hiệu ở bên trái và xem mô phỏng trực tiếp trên khung điện thoại.',
+    title: 'Công nghệ: Zalo Mini App SDK',
+    subtitle: 'Tùy chỉnh thương hiệu ở bên trái và xem mô phỏng tức thì trên khung điện thoại.',
   },
   'ai-chatbot': {
-    title: 'Nguyên mẫu: AI Chatbot Phân loại & Chốt đơn',
+    title: 'Công nghệ: AI Tool-Calling & Chốt đơn',
     subtitle: 'Theo dõi cách AI nhận diện ý định và gọi hàm truy vấn dữ liệu thật theo thời gian thực.',
   },
 };
@@ -712,12 +712,12 @@ export function DemoModal({ demoKey, onClose, onOpenZalo }: DemoModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="demo-modal-title"
-      className="fixed inset-0 z-50 flex items-end justify-center bg-[#F5F5F7]/70 p-0 backdrop-blur-md sm:items-center sm:p-5"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-[#DCE3EE]/60 p-0 backdrop-blur-md sm:items-center sm:p-5"
       onClick={onClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="glass-surface apple-scroll max-h-[92vh] w-full max-w-[820px] overflow-y-auto rounded-t-[28px] p-6 sm:rounded-[30px] sm:p-8"
+        className="glass-surface device-elevation apple-scroll max-h-[92vh] w-full max-w-[820px] overflow-y-auto rounded-t-[28px] p-6 sm:rounded-[32px] sm:p-8"
       >
         <div className="flex items-start justify-between gap-4">
           <div>

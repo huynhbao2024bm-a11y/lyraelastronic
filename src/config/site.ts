@@ -20,63 +20,140 @@ export const SITE_CONFIG = {
 
 export const NAV_LINKS = [
   { label: 'Dịch vụ', href: '#dich-vu' },
-  { label: 'Nguyên mẫu', href: '#ban-mau' },
+  { label: 'Công nghệ', href: '#cong-nghe' },
   { label: 'Quy trình', href: '#quy-trinh' },
   { label: 'Liên hệ', href: '#lien-he' },
 ] as const;
 
-export interface ShowcaseBlueprint {
-  id: DemoKey;
-  badge: string;
-  title: string;
-  problem: string;
-  outcome: string;
-  specs: { label: string; value: string }[];
-  stack: string[];
+export interface TechMarqueeItem {
+  name: string;
+  category: string;
+  desc: string;
+  iconName:
+    | 'cpu'
+    | 'globe'
+    | 'shield'
+    | 'layers'
+    | 'database'
+    | 'zap'
+    | 'smartphone'
+    | 'bot'
+    | 'code'
+    | 'workflow'
+    | 'cloud'
+    | 'check';
 }
 
-export const SHOWCASE_BLUEPRINTS: ShowcaseBlueprint[] = [
+export const TECH_MARQUEE_ROW_1: TechMarqueeItem[] = [
+  {
+    name: 'Next.js 16 & React 19',
+    category: 'Frontend Core',
+    desc: 'Tải tức thì, tối ưu SEO cấu trúc',
+    iconName: 'globe',
+  },
+  {
+    name: 'TypeScript Strict',
+    category: 'Type Safety',
+    desc: 'Kiểm soát kiểu dữ liệu chặt chẽ',
+    iconName: 'code',
+  },
+  {
+    name: 'PostgreSQL Atomic',
+    category: 'Database Engine',
+    desc: 'Giao dịch nguyên tử chống sai lệch',
+    iconName: 'database',
+  },
+  {
+    name: 'Tailwind CSS v4',
+    category: 'Design System',
+    desc: 'Giao diện kính quang học chuẩn xác',
+    iconName: 'layers',
+  },
+  {
+    name: 'Cloudflare & Vercel Edge',
+    category: 'Global CDN',
+    desc: 'Phân phối nội dung tốc độ cao',
+    iconName: 'cloud',
+  },
+  {
+    name: 'Playwright Automation',
+    category: 'Quality Gate',
+    desc: 'Kiểm thử tự động đa thiết bị',
+    iconName: 'check',
+  },
+];
+
+export const TECH_MARQUEE_ROW_2: TechMarqueeItem[] = [
+  {
+    name: 'Zalo Mini App SDK',
+    category: 'Mobile Ecosystem',
+    desc: 'Mở trực tiếp không cần cài ứng dụng',
+    iconName: 'smartphone',
+  },
+  {
+    name: 'AI Function Calling',
+    category: 'AI Sales Engine',
+    desc: 'Tra cứu bảng giá thật trước khi báo giá',
+    iconName: 'bot',
+  },
+  {
+    name: 'Zalo OA & ZNS API',
+    category: 'Customer Care',
+    desc: 'Gửi xác nhận lịch hẹn & đơn hàng',
+    iconName: 'zap',
+  },
+  {
+    name: 'Webhook 2 Chiều',
+    category: 'Realtime Sync',
+    desc: 'Đồng bộ tức thì giữa Chat và Kho',
+    iconName: 'workflow',
+  },
+  {
+    name: 'Idempotent VND Ledger',
+    category: 'Financial Guard',
+    desc: 'Chống tạo trùng đơn & lệch tiền VND',
+    iconName: 'shield',
+  },
+  {
+    name: 'GSAP & Lenis Physics',
+    category: 'Motion Engine',
+    desc: 'Chuyển động quán tính mượt 60fps',
+    iconName: 'cpu',
+  },
+];
+
+export interface TechPillar {
+  id: DemoKey;
+  category: string;
+  title: string;
+  summary: string;
+  highlights: string[];
+}
+
+export const TECH_PILLARS: TechPillar[] = [
   {
     id: 'webapp-pos',
-    badge: 'Nguyên mẫu kiến trúc · Web App',
-    title: 'Hệ thống Quản trị Bán hàng & Kho theo quy trình riêng',
-    problem:
-      'Quản lý đơn hàng, tồn kho và công nợ bằng file rời rạc dễ gây sai lệch số liệu khi nhiều nhân viên cùng thao tác.',
-    outcome:
-      'Một Web App tập trung với giao dịch nguyên tử (atomic), lưu tiền tệ bằng số nguyên VND và lưu vết mọi biến động kho.',
-    specs: [
-      { label: 'Tiền tệ', value: 'Số nguyên VND' },
-      { label: 'An toàn dữ liệu', value: 'Atomic Transaction' },
-    ],
-    stack: ['Next.js', 'TypeScript', 'PostgreSQL'],
+    category: 'Web App Engineering',
+    title: 'Kiến trúc Giao dịch Atomic & Sổ cái VND',
+    summary:
+      'Xử lý đồng thời đơn hàng, tồn kho và công nợ bằng số nguyên VND với khóa chống trùng lặp giao dịch.',
+    highlights: ['Lưu trữ số nguyên VND', 'Khóa Idempotency Key', 'Phân quyền & Audit Trail'],
   },
   {
     id: 'zalo-miniapp',
-    badge: 'Nguyên mẫu kiến trúc · Zalo Mini App',
-    title: 'Zalo Mini App Đặt lịch & Chăm sóc Khách hàng',
-    problem:
-      'Khách hàng thường ngại tải thêm ứng dụng di động riêng, khiến doanh nghiệp khó duy trì tương tác và lịch hẹn.',
-    outcome:
-      'Chạm mở trực tiếp bên trong Zalo không cần cài đặt: đặt lịch, quét QR tại quầy và nhận thông báo qua Zalo OA.',
-    specs: [
-      { label: 'Trải nghiệm', value: 'Mở ngay trong Zalo' },
-      { label: 'Kết nối', value: 'Zalo OA & QR' },
-    ],
-    stack: ['Zalo Mini App SDK', 'Zalo OA', 'QR Check-in'],
+    category: 'Zalo Ecosystem',
+    title: 'Nền tảng Zalo Mini App & QR Liên thông',
+    summary:
+      'Khách hàng quét mã hoặc mở từ tin nhắn Zalo để đặt lịch, tích điểm ngay lập tức mà không phải tải app.',
+    highlights: ['0 bước cài đặt App', 'Quét QR Check-in tại quầy', 'Tích hợp thông báo Zalo OA'],
   },
   {
     id: 'ai-chatbot',
-    badge: 'Nguyên mẫu kiến trúc · AI Automation',
-    title: 'AI Chatbot Tư vấn & Tạo đơn Tự động đa kênh',
-    problem:
-      'Tin nhắn hỏi giá ngoài giờ hoặc lúc cao điểm dễ bị trễ phản hồi, làm giảm tỷ lệ chuyển đổi đơn hàng.',
-    outcome:
-      'Trợ lý AI tiếp nhận câu hỏi tiếng Việt, tra cứu đúng bảng giá & tồn kho thực tế của shop rồi đẩy đơn nháp về hệ thống.',
-    specs: [
-      { label: 'Dữ liệu trả lời', value: 'Theo bảng giá thật' },
-      { label: 'Đầu ra', value: 'Đơn nháp về CRM' },
-    ],
-    stack: ['AI Tool-Calling', 'Webhook Đa kênh', 'CRM Sync'],
+    category: 'AI Automation',
+    title: 'Động cơ AI Tool-Calling Chống Bịa Giá',
+    summary:
+      'Mô hình ngôn ngữ kết hợp hàm truy vấn trực tiếp danh mục & tồn kho thực tế trước khi phản hồi khách hàng.',
+    highlights: ['Đọc bảng giá từ Database', 'Tự động tạo đơn nháp CRM', 'Chuyển tiếp nhân sự linh hoạt'],
   },
 ];
 
@@ -88,7 +165,7 @@ export const PROCESS_STEPS = [
   },
   {
     step: '02',
-    title: 'Thiết kế nguyên mẫu',
+    title: 'Thiết kế giao diện',
     description: 'Dựng giao diện chuẩn Apple, khách hàng duyệt trực quan từng màn hình.',
   },
   {

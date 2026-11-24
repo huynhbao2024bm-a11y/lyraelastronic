@@ -1,9 +1,27 @@
 'use client';
 
-import { ArrowUpRight, CheckCircle2, Layers, MessageSquare, QrCode } from 'lucide-react';
-import { DemoKey, SHOWCASE_BLUEPRINTS, SITE_CONFIG } from '@/config/site';
-import { AmbientCanvas } from './AmbientCanvas';
-import { QrCodeSvg } from './QrCodeSvg';
+import {
+  ArrowUpRight,
+  Bot,
+  CheckCircle2,
+  Cloud,
+  Code2,
+  Cpu,
+  Database,
+  Globe,
+  Layers,
+  ShieldCheck,
+  Smartphone,
+  Workflow,
+  Zap,
+} from 'lucide-react';
+import {
+  DemoKey,
+  TECH_MARQUEE_ROW_1,
+  TECH_MARQUEE_ROW_2,
+  TECH_PILLARS,
+  TechMarqueeItem,
+} from '@/config/site';
 import { Reveal } from './Reveal';
 import { SpecularCard } from './SpecularCard';
 
@@ -11,212 +29,151 @@ interface FlagshipShowcaseProps {
   onOpenDemo: (demoKey: DemoKey) => void;
 }
 
-function BlueprintVisual({ id }: { id: DemoKey }) {
-  if (id === 'webapp-pos') {
-    return (
-      <div className="silver-surface flex h-full flex-col justify-between rounded-2xl p-5">
-        <div className="flex items-center justify-between border-b border-black/[0.06] pb-3">
-          <div className="flex items-center gap-2">
-            <Layers className="h-4 w-4 text-[#0071E3]" />
-            <span className="text-[12px] font-semibold text-[#1D1D1F]">Khung Giao diện Thu ngân &amp; Kho</span>
-          </div>
-          <span className="rounded-full bg-[#0071E3]/10 px-2.5 py-0.5 text-[10px] font-semibold text-[#0071E3]">
-            Nguyên mẫu
+function TechIcon({ name }: { name: TechMarqueeItem['iconName'] }) {
+  const cls = 'h-5 w-5 text-[#0071E3]';
+  switch (name) {
+    case 'globe':
+      return <Globe className={cls} />;
+    case 'code':
+      return <Code2 className={cls} />;
+    case 'database':
+      return <Database className={cls} />;
+    case 'layers':
+      return <Layers className={cls} />;
+    case 'cloud':
+      return <Cloud className={cls} />;
+    case 'check':
+      return <CheckCircle2 className={cls} />;
+    case 'smartphone':
+      return <Smartphone className={cls} />;
+    case 'bot':
+      return <Bot className={cls} />;
+    case 'zap':
+      return <Zap className={cls} />;
+    case 'workflow':
+      return <Workflow className={cls} />;
+    case 'shield':
+      return <ShieldCheck className={cls} />;
+    default:
+      return <Cpu className={cls} />;
+  }
+}
+
+function MarqueeCard({ item }: { item: TechMarqueeItem }) {
+  return (
+    <div className="glass-surface spring-interactive mx-2.5 flex w-[295px] shrink-0 items-center gap-3.5 rounded-[22px] p-3.5 sm:w-[320px] sm:p-4">
+      <div className="content-card flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl">
+        <TechIcon name={item.iconName} />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center justify-between gap-2">
+          <p className="truncate text-[14px] font-semibold tracking-[-0.015em] text-[#1D1D1F]">
+            {item.name}
+          </p>
+          <span className="shrink-0 rounded-full bg-[#0071E3]/10 px-2 py-0.5 text-[10px] font-semibold text-[#0071E3]">
+            {item.category}
           </span>
         </div>
-
-        <div className="my-4 space-y-2.5 text-[13px]">
-          {[
-            { label: 'Danh mục & Tồn kho thực tế', note: 'Đồng bộ theo từng chi nhánh' },
-            { label: 'Tính tổng tiền nguyên (VND)', note: 'Không dùng số thực, tránh sai số' },
-            { label: 'Xuất hóa đơn & Trừ kho Atomic', note: 'Lưu vết nhân viên thực hiện' },
-          ].map((row) => (
-            <div
-              key={row.label}
-              className="flex items-center justify-between rounded-xl border border-black/[0.05] bg-white/90 px-3.5 py-2.5"
-            >
-              <div>
-                <p className="font-medium text-[#1D1D1F]">{row.label}</p>
-                <p className="text-[11px] text-[#6E6E73]">{row.note}</p>
-              </div>
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-[#0071E3]" />
-            </div>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-between border-t border-black/[0.06] pt-3 text-[12px] text-[#6E6E73]">
-          <span>Dữ liệu thử nghiệm:</span>
-          <span className="font-medium text-[#1D1D1F]">Bạn tự nhập trong bản Demo</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (id === 'zalo-miniapp') {
-    return (
-      <div className="silver-surface flex h-full items-center justify-center rounded-2xl p-5">
-        <div className="glass-surface w-full max-w-[300px] rounded-[24px] p-4">
-          <div className="flex items-center justify-between pb-3">
-            <span className="text-[12px] font-semibold text-[#1D1D1F]">Zalo Mini App</span>
-            <span className="rounded-full bg-[#0071E3]/10 px-2.5 py-0.5 text-[10px] font-semibold text-[#0071E3]">
-              Không cần cài đặt
-            </span>
-          </div>
-          <div className="flex items-center gap-3 rounded-2xl border border-black/[0.06] bg-white p-3.5">
-            <div className="shrink-0 rounded-lg border border-black/[0.06] bg-white p-1">
-              <QrCodeSvg value={SITE_CONFIG.zaloHref} size={52} label="QR mẫu Mini App" />
-            </div>
-            <div>
-              <p className="text-[12px] font-semibold text-[#1D1D1F]">Thẻ Thành viên &amp; Lịch hẹn</p>
-              <p className="mt-0.5 text-[11px] text-[#6E6E73]">Quét QR check-in ngay tại quầy</p>
-            </div>
-          </div>
-          <div className="mt-3 grid grid-cols-2 gap-2 text-center text-[11px] font-medium">
-            <div className="flex items-center justify-center gap-1 rounded-xl bg-[#0071E3] py-2 text-white">
-              <QrCode className="h-3 w-3" />
-              <span>Đặt lịch</span>
-            </div>
-            <div className="rounded-xl border border-black/[0.08] bg-white py-2 text-[#1D1D1F]">
-              Tích điểm
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="silver-surface flex h-full flex-col justify-between rounded-2xl p-5">
-      <div className="flex items-center justify-between border-b border-black/[0.06] pb-3">
-        <div className="flex items-center gap-2">
-          <MessageSquare className="h-4 w-4 text-[#0071E3]" />
-          <span className="text-[12px] font-semibold text-[#1D1D1F]">Kiến trúc AI Sales Assistant</span>
-        </div>
-        <span className="text-[11px] font-medium text-[#0071E3]">Luồng tự động</span>
-      </div>
-
-      <div className="my-4 space-y-2.5 text-[13px]">
-        <div className="max-w-[88%] rounded-2xl rounded-tl-sm border border-black/[0.06] bg-white px-3.5 py-2 text-[#1D1D1F]">
-          1. Tiếp nhận câu hỏi tiếng Việt tự nhiên từ khách hàng.
-        </div>
-        <div className="ml-auto max-w-[88%] rounded-2xl rounded-tr-sm bg-[#0071E3] px-3.5 py-2 text-white">
-          2. Gọi API kiểm tra bảng giá &amp; tồn kho thật của doanh nghiệp.
-        </div>
-        <div className="flex items-center gap-2 rounded-xl border border-black/[0.06] bg-white px-3 py-2 text-[12px] text-[#1D1D1F]">
-          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#0071E3]" />
-          <span>3. Tạo đơn nháp &amp; đẩy thông báo về hệ thống quản trị</span>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between border-t border-black/[0.06] pt-3 text-[11px] text-[#6E6E73]">
-        <span>Kênh hỗ trợ: Zalo OA · Fanpage · Web</span>
-        <span className="font-medium text-[#1D1D1F]">Chống bịa giá</span>
+        <p className="mt-0.5 truncate text-[12px] text-[#515158]">{item.desc}</p>
       </div>
     </div>
   );
 }
 
 /**
- * Section 4: Nguyên mẫu giải pháp tương tác trên nền Trắng Sứ (#FFFFFF) + lớp phản chiếu sáng bạc.
+ * Section 4: Nền tảng Công nghệ & Kiến trúc Kỹ thuật (#cong-nghe)
+ * - Thay thế hoàn toàn phần sản phẩm/nguyên mẫu cũ bằng dải băng chuyền Công nghệ tự chạy ngang (Dual Infinite Marquee)
+ * - Kèm 3 trụ cột kỹ thuật cốt lõi trong khung kính trong suốt & nút trải nghiệm trực tiếp cơ chế vận hành.
  */
 export function FlagshipShowcase({ onOpenDemo }: FlagshipShowcaseProps) {
-  return (
-    <section
-      id="ban-mau"
-      className="relative scroll-mt-[76px] overflow-hidden bg-[#FFFFFF] py-[110px] lg:py-[150px]"
-    >
-      <AmbientCanvas variant="band" />
+  const row1Loop = [...TECH_MARQUEE_ROW_1, ...TECH_MARQUEE_ROW_1];
+  const row2Loop = [...TECH_MARQUEE_ROW_2, ...TECH_MARQUEE_ROW_2];
 
-      <div className="relative z-10 mx-auto max-w-[1120px] px-5 sm:px-8">
+  return (
+    <section id="cong-nghe" className="relative scroll-mt-[76px] py-[110px] lg:py-[150px]">
+      <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
         <Reveal>
-          <div className="max-w-[740px]">
+          <div className="max-w-[720px]">
             <p className="text-[13px] font-semibold tracking-[-0.01em] text-[#0071E3]">
-              Nguyên mẫu giải pháp tương tác
+              Nền tảng công nghệ cốt lõi
             </p>
             <h2 className="mt-3 text-[clamp(2rem,4vw,3.25rem)] font-semibold tracking-[-0.03em] leading-[1.1]">
-              <span className="metallic-ink">Trải nghiệm nguyên mẫu</span>
+              <span className="metallic-ink">Công nghệ hiện đại.</span>
               <br />
-              <span className="text-[#6E6E73]">trước khi bắt tay triển khai.</span>
+              <span className="text-[#515158]">Vận hành bền bỉ từng mili-giây.</span>
             </h2>
-            <p className="mt-4 max-w-[60ch] text-[16px] leading-[1.55] text-[#6E6E73]">
-              Các dự án khách hàng thực tế sẽ được cập nhật tại đây sau khi nghiệm thu. Hiện bạn có thể bấm dùng thử 3 nguyên mẫu hệ thống bên dưới.
+            <p className="mt-4 max-w-[60ch] text-[16px] leading-[1.55] text-[#515158]">
+              Mọi dự án được xây dựng trên hệ sinh thái công nghệ chuẩn sản xuất — tối ưu tốc độ tải, bảo toàn dữ liệu tài chính và sẵn sàng mở rộng quy mô.
             </p>
           </div>
         </Reveal>
+      </div>
 
-        <div className="mt-14 space-y-6 lg:space-y-8">
-          {SHOWCASE_BLUEPRINTS.map((item, idx) => {
-            const reverseOnDesktop = idx % 2 === 1;
-            return (
-              <Reveal key={item.id} delayMs={idx * 70}>
-                <SpecularCard className="p-6 sm:p-8 lg:p-10" variant="glass">
-                  <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
-                    <div
-                      className={`lg:col-span-6 ${reverseOnDesktop ? 'lg:order-2' : 'lg:order-1'}`}
-                    >
-                      <BlueprintVisual id={item.id} />
-                    </div>
+      {/* Dual-Row Auto-Scrolling Horizontal Tech Marquee */}
+      <Reveal delayMs={90}>
+        <div className="marquee-group marquee-mask mx-auto mt-12 max-w-[1440px] space-y-5 overflow-hidden py-4">
+          <div className="marquee-track-left">
+            {row1Loop.map((item, idx) => (
+              <MarqueeCard key={`r1-${item.name}-${idx}`} item={item} />
+            ))}
+          </div>
 
-                    <div
-                      className={`lg:col-span-6 ${reverseOnDesktop ? 'lg:order-1' : 'lg:order-2'}`}
-                    >
-                      <span className="glass-pill inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold text-[#0071E3]">
-                        {item.badge}
-                      </span>
+          <div className="marquee-track-right">
+            {row2Loop.map((item, idx) => (
+              <MarqueeCard key={`r2-${item.name}-${idx}`} item={item} />
+            ))}
+          </div>
+        </div>
+      </Reveal>
 
-                      <h3 className="mt-4 text-[24px] font-semibold tracking-[-0.025em] leading-[1.2] text-[#1D1D1F] sm:text-[28px]">
-                        {item.title}
-                      </h3>
+      {/* 3 Core Technology Pillars (Translucent Glass Outer + Crisp Elevated Inner Content Cards) */}
+      <div className="mx-auto mt-14 max-w-[1120px] px-5 sm:px-8">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {TECH_PILLARS.map((pillar, idx) => (
+            <Reveal key={pillar.id} delayMs={idx * 90}>
+              <SpecularCard className="h-full p-6 sm:p-7" variant="glass">
+                <div className="flex h-full flex-col justify-between gap-6">
+                  <div>
+                    <span className="glass-pill inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold text-[#0071E3]">
+                      {pillar.category}
+                    </span>
 
-                      <div className="mt-5 space-y-3 text-[15px] leading-[1.55]">
-                        <p className="text-[#6E6E73]">
-                          <strong className="font-semibold text-[#1D1D1F]">Bài toán: </strong>
-                          {item.problem}
-                        </p>
-                        <p className="text-[#6E6E73]">
-                          <strong className="font-semibold text-[#1D1D1F]">Giải pháp: </strong>
-                          {item.outcome}
-                        </p>
+                    <h3 className="mt-4 text-[21px] font-semibold tracking-[-0.02em] leading-[1.22] text-[#1D1D1F]">
+                      {pillar.title}
+                    </h3>
+
+                    <p className="mt-2.5 text-[14px] leading-[1.55] text-[#515158]">
+                      {pillar.summary}
+                    </p>
+                  </div>
+
+                  {/* Crisp Solid Elevated Content Cards on top of Translucent Glass */}
+                  <div className="space-y-2.5">
+                    {pillar.highlights.map((h) => (
+                      <div
+                        key={h}
+                        className="content-card flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[13px] font-medium text-[#1D1D1F]"
+                      >
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-[#0071E3]" />
+                        <span>{h}</span>
                       </div>
+                    ))}
 
-                      <div className="mt-6 grid grid-cols-2 gap-3 border-y border-black/[0.06] py-4">
-                        {item.specs.map((m) => (
-                          <div key={m.label}>
-                            <p className="text-[11px] text-[#6E6E73]">{m.label}</p>
-                            <p className="mt-0.5 text-[15px] font-semibold text-[#1D1D1F]">
-                              {m.value}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-                        <div className="flex flex-wrap gap-1.5">
-                          {item.stack.map((tech) => (
-                            <span
-                              key={tech}
-                              className="rounded-full border border-black/[0.07] bg-[#F5F5F7] px-3 py-1 text-[11px] font-medium text-[#6E6E73]"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={() => onOpenDemo(item.id)}
-                          className="pill-sheen btn-shadow-graphite inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#1D1D1F] px-5 text-[13px] font-medium text-white hover:bg-[#333336] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3]"
-                        >
-                          <span>Xem bản Demo</span>
-                          <ArrowUpRight className="h-4 w-4" />
-                        </button>
-                      </div>
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={() => onOpenDemo(pillar.id)}
+                        className="pill-sheen btn-shadow-graphite inline-flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#1D1D1F] px-5 text-[13px] font-medium text-white hover:bg-[#333336] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3]"
+                      >
+                        <span>Trải nghiệm công nghệ</span>
+                        <ArrowUpRight className="h-4 w-4" />
+                      </button>
                     </div>
                   </div>
-                </SpecularCard>
-              </Reveal>
-            );
-          })}
+                </div>
+              </SpecularCard>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

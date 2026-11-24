@@ -10,9 +10,9 @@ interface SpecularCardProps {
 }
 
 /**
- * Thẻ vật liệu Kính Quang Học (.glass-surface) hoặc Nhôm Bạc (.silver-surface):
- * - Nâng nhẹ translateY(-4px) khi hover
- * - Vệt ánh sáng trắng bạc thuần khiết rgba(255,255,255,0.65) theo trỏ chuột trên desktop.
+ * Thẻ vật liệu Kính Quang Học Trong Suốt (.glass-surface) hoặc Nhôm Bạc (.silver-surface):
+ * - Phản hồi nghiêng 3D nhẹ tức thì theo trỏ chuột (như visionOS / iPadOS)
+ * - Tự động đàn hồi (spring) mượt mà về cân bằng khi rời chuột.
  */
 export function SpecularCard({
   children,
@@ -21,24 +21,35 @@ export function SpecularCard({
 }: SpecularCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { tier, finePointer } = useHardwareTier();
-  const enableSpecular = tier === 'high' && finePointer;
+  const enableInteractive = tier !== 'reduced' && finePointer;
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
-      if (!enableSpecular || !cardRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
+      if (!enableInteractive || !cardRef.current) return;
+      const el = cardRef.current;
+      const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      cardRef.current.style.setProperty('--spot-x', `${x}px`);
-      cardRef.current.style.setProperty('--spot-y', `${y}px`);
-      cardRef.current.style.setProperty('--spot-opacity', '1');
+      const nx = x / Math.max(1, rect.width) - 0.5;
+      const ny = y / Math.max(1, rect.height) - 0.5;
+
+      el.dataset.pointerActive = 'true';
+      el.style.setProperty('--spot-x', `${x}px`);
+      el.style.setProperty('--spot-y', `${y}px`);
+      el.style.setProperty('--spot-opacity', '1');
+      el.style.setProperty('--rx', `${(-ny * 3.2).toFixed(2)}deg`);
+      el.style.setProperty('--ry', `${(nx * 3.2).toFixed(2)}deg`);
     },
-    [enableSpecular],
+    [enableInteractive],
   );
 
   const handlePointerLeave = useCallback(() => {
-    if (!cardRef.current) return;
-    cardRef.current.style.setProperty('--spot-opacity', '0');
+    const el = cardRef.current;
+    if (!el) return;
+    el.dataset.pointerActive = 'false';
+    el.style.setProperty('--spot-opacity', '0');
+    el.style.setProperty('--rx', '0deg');
+    el.style.setProperty('--ry', '0deg');
   }, []);
 
   const surfaceClass = variant === 'silver' ? 'silver-surface' : 'glass-surface';
@@ -46,10 +57,10 @@ export function SpecularCard({
   return (
     <div
       ref={cardRef}
-      data-specular={enableSpecular ? 'true' : 'false'}
-      onPointerMove={enableSpecular ? handlePointerMove : undefined}
-      onPointerLeave={enableSpecular ? handlePointerLeave : undefined}
-      className={`${surfaceClass} specular-card rounded-[24px] lg:rounded-[30px] overflow-hidden ${className}`}
+      data-specular={enableInteractive ? 'true' : 'false'}
+      onPointerMove={enableInteractive ? handlePointerMove : undefined}
+      onPointerLeave={enableInteractive ? handlePointerLeave : undefined}
+      className={`${surfaceClass} specular-card rounded-[26px] lg:rounded-[32px] overflow-hidden ${className}`}
     >
       <div className="relative z-10 h-full">{children}</div>
     </div>

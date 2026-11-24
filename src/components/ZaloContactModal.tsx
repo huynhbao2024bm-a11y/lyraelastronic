@@ -42,12 +42,12 @@ export function ZaloContactModal({ open, onClose }: ZaloContactModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="zalo-modal-title"
-      className="fixed inset-0 z-50 flex items-end justify-center bg-[#F5F5F7]/65 p-0 backdrop-blur-md sm:items-center sm:p-5"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-[#DCE3EE]/60 p-0 backdrop-blur-md sm:items-center sm:p-5"
       onClick={onClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="glass-surface w-full max-w-[440px] rounded-t-[28px] p-6 sm:rounded-[30px] sm:p-8"
+        className="glass-surface device-elevation w-full max-w-[440px] rounded-t-[28px] p-6 sm:rounded-[32px] sm:p-8"
       >
         <div className="flex items-start justify-between gap-4">
           <div>
